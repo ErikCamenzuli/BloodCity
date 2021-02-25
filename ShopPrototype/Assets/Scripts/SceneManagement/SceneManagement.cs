@@ -10,5 +10,9 @@ public class SceneManagement : MonoBehaviour
         SceneManager.LoadScene(levelName);
     }
 
+    public void quitGame()
+    {
+        Application.Quit();
+    }
 
 }
