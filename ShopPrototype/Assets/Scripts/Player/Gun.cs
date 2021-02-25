@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
-    public float damage = 10f;
+    public static int damage = 10;
     public float range = 10f;
     public float impactForce = 10f;
     [Tooltip("The higher this number is, the faster the fire rate increases." +
@@ -116,7 +116,8 @@ public class Gun : MonoBehaviour
             Target target = hitInfo.transform.GetComponent<Target>();
             if (target != null)
             {
-                target.TakeDamage(damage);
+                target.DamageTaken(damage);
+
             }
 
             if (hitInfo.rigidbody != null)
