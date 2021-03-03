@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ShowHideButtons : MonoBehaviour
 {
-
+    //UI
     public GameObject Panel;
-    
+    /// <summary>
+    /// opening and closing of panel
+    /// </summary>
     public void OpenPanel()
     {
         if(Panel != null)

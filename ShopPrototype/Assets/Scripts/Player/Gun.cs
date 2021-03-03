@@ -1,34 +1,39 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
+    //gun damage
     public static int damage = 10;
+    //gun distance for bullet
     public float range = 10f;
+    //impact value of bullet
     public float impactForce = 10f;
     [Tooltip("The higher this number is, the faster the fire rate increases." +
              " The Lower this number is, the slower it fires.")]
-    public float fireRate;
-    private float nextTimeToFire;
-
+    public float fireRate; //fire rate for gun
+    private float nextTimeToFire; //next time till the next bullet
+    //the camera
     public Camera fpsCamera;
-    //public ParticleSystem muzzleFlashParticle;
-    public GameObject impactEffects;
-
+    //max ammo for clip size
     public int maxAmmo = 50;
+    //how long for reload
     public float reloadTime = 5f;
+    //players current ammo
     private int currentAmmo;
+    //text for players current ammo
     public Text currentAmmoText;
-
+    //is the player reloading?
     private bool isReloading = false;
-
+    //animation
     public Animator animator;
-
+    //impact effects (currently no effect)
+    private GameObject impactEffects;
 
     void Start()
     {
+        //players starting ammo is always the same as the max ammo
         currentAmmo = maxAmmo;
     }
 
@@ -41,38 +46,45 @@ public class Gun : MonoBehaviour
 
     void OnGUI()
     {
+        //UI text for ammo
         currentAmmoText.text = "Ammo: " + currentAmmo + "/" + maxAmmo.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //checking if the player is reloading
         if (isReloading)
         {
             return;
         }
 
-
+        //if the player presses R
         if (Input.GetKeyDown(KeyCode.R))
         {
+            //checks if the current ammo is the same as the max ammo
             if (currentAmmo == maxAmmo)
             {
+                //return nothing if ammo is full
                 return;
             }
-
+            //start the reload coroutine
             StartCoroutine(Reload());
             return;
         }
-
+        //checks if the ammo is less than or is 0
         if (currentAmmo <= 0)
         {
+            //reload gun automatically
             StartCoroutine(Reload());
             return;
         }
-
+        //checking if left mouse button is pushed and the next time to fire
         if (Input.GetButton("Fire1") && Time.time > nextTimeToFire)
         {
+            //setting the nexttimetofire to the time +1 divided by firerate
             nextTimeToFire = Time.time + 1f / fireRate;
+            //shoot the bullet
             Shoot();
             Debug.Log("FIRE!");
         }
@@ -102,7 +114,6 @@ public class Gun : MonoBehaviour
     {
         int layerMask = 1 >> 8;
         layerMask = ~layerMask;
-        //muzzleFlashParticle.Play();
 
         currentAmmo--;
 

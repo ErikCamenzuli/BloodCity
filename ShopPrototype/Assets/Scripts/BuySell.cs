@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class BuySell : MonoBehaviour
 {
+    //Prices of ammo types
     public int Ammo_Standard = 25;
     public int Ammo_HV = 30;
     public int Ammo_Explosive = 35;
+    //money check
     public string popUp;
     private bool HasMoney = true;
 
-
+    /// <summary>
+    /// Inspector Objects
+    /// </summary>
     #region BUY VARIABLES
     public GameObject Button_Ammo_Type_1;
     public GameObject Button_Ammo_Type_2;
     public GameObject Button_Ammo_Type_3;
     #endregion
-
+    /// <summary>
+    /// Inspector Objects
+    /// </summary>
     #region Sell VARIABLES
     public GameObject Sell_Button_Ammo_Type_1;
     public GameObject Sell_Button_Ammo_Type_2;
@@ -25,11 +31,16 @@ public class BuySell : MonoBehaviour
 
     public void Update()
     {
+        //checking to see if player has money
         NoFunds pop = GameObject.FindGameObjectWithTag("MASTER").GetComponent<NoFunds>();
         pop.BuyCheck(popUp);
     }
 
     #region BUY FUNCTIONS
+    /// <summary>
+    /// if the player wants to buy this ammo
+    /// it will take money off the players total
+    /// </summary>
     public void Ammo_Type_Standard()
     {
         if(Button_Ammo_Type_1 == true)
@@ -38,7 +49,10 @@ public class BuySell : MonoBehaviour
             Debug.Log("Player now has: " + PlayerMoney.Money);
         }
     }
-
+    /// <summary>
+    /// if the player wants to buy this ammo
+    /// it will take money off the players total
+    /// </summary>
     public void Ammo_Type_HV()
     {
         if(Button_Ammo_Type_2 == true)
@@ -47,7 +61,10 @@ public class BuySell : MonoBehaviour
             Debug.Log("Player now has: " + PlayerMoney.Money);
         }
     }
-
+    /// <summary>
+    /// if the player wants to buy this ammo
+    /// it will take money off the players total
+    /// </summary>
     public void Ammo_Type_Explosive()
     {
         if(Button_Ammo_Type_3 == true)
@@ -62,6 +79,10 @@ public class BuySell : MonoBehaviour
     #endregion
 
     #region SELL FUNCTIONS
+    /// <summary>
+    /// if the player wants to sell this ammo
+    /// it will give money to the players total
+    /// </summary>
     public void Sell_Ammo_Type_Standard()
     {
         if (Button_Ammo_Type_1 == true)
@@ -70,7 +91,10 @@ public class BuySell : MonoBehaviour
             Debug.Log("Player now has: " + PlayerMoney.Money);
         }
     }
-
+    /// <summary>
+    /// if the player wants to sell this ammo
+    /// it will give money to the players total
+    /// </summary>
     public void Sell_Ammo_Type_HV()
     {
         if (Button_Ammo_Type_2 == true)
@@ -79,7 +103,10 @@ public class BuySell : MonoBehaviour
             Debug.Log("Player now has: " + PlayerMoney.Money);
         }
     }
-
+    /// <summary>
+    /// if the player wants to sell this ammo
+    /// it will give money to the players total
+    /// </summary>
     public void Sell_Ammo_Type_Explosive()
     {
         if (Button_Ammo_Type_3 == true)
